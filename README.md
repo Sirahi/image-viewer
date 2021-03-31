@@ -1,4 +1,4 @@
-<h1>Teeny-Tiny Image Viewer using THREEJS & ELectron-React-BoilerPlate</h1>
+<h1>Teeny-Tiny Image Viewer using THREEJS & Electron-React-BoilerPlate</h1>
 
 <br>
 
