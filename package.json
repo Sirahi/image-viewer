@@ -248,15 +248,23 @@
     "yarn-deduplicate": "^3.1.0"
   },
   "dependencies": {
+    "dat.gui": "^0.7.7",
     "electron-debug": "^3.1.0",
     "electron-log": "^4.2.4",
     "electron-updater": "^4.3.4",
+    "fast-png": "^5.0.4",
+    "fflate": "^0.6.9",
+    "fs": "^0.0.1-security",
     "history": "^5.0.0",
+    "jpeg-js": "^0.4.3",
+    "path": "^0.12.7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "regenerator-runtime": "^0.13.5",
-    "source-map-support": "^0.5.19"
+    "source-map-support": "^0.5.19",
+    "three": "^0.126.1",
+    "tiff": "^4.3.0"
   },
   "devEngines": {
     "node": ">=10.x",
