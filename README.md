@@ -15,7 +15,7 @@ yarn install
 ## Required Changes
 Inside your project directory, Go to:
 
-`node_modules/tiff/lib-esm/tiffDecoder.js` and replace line 263 & 214 with
+`node_modules/tiff/lib-esm/tiffDecoder.js` and replace line 263 & 214 with <br>
 `else if (bitDepth === 32 && (sampleFormat === 3 || sampleFormat[0] === 3)) {`
 
 First, clone the repo via git and install dependencies:
