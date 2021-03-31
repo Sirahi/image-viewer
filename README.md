@@ -37,7 +37,7 @@ To package apps for the local platform:
 ```bash
 yarn package
 ```
-## Supported Formats & Bit Depths per Channel
+## Supported Formats & Bit-Depths per Channel
 
 - JPG (8)
 - TGA (8)
