@@ -2,9 +2,20 @@
 
 <br>
 
-## Required Changes
+## Installation
 
-- **If you have installation or compilation issues with this project, please see [our debugging guide](https://github.com/electron-react-boilerplate/electron-react-boilerplate/issues/400)**
+First, clone the repo via git and install dependencies:
+
+```bash
+git clone --depth 1 --single-branch https://github.com/electron-react-boilerplate/electron-react-boilerplate.git your-project-name
+cd your-project-name
+yarn install
+```
+
+## Required Changes
+Inside your project directory, Go to:
+
+- `node_modules/tiff/lib-esm/tiffDecoder.js`
 
 First, clone the repo via git and install dependencies:
 
