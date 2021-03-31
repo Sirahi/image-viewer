@@ -19,7 +19,7 @@ Inside your project directory, Go to:
 - `node_modules/tiff/lib-esm/tiffDecoder.js` and replace line **214** & **263** with <br>
 `else if (bitDepth === 32 && (sampleFormat === 3 || sampleFormat[0] === 3)) {`
 
-- `node_modules/jpeg-js/lib/decoder.js` and add following attribute in ***image*** object declared at line **1115** <br>
+- `node_modules/jpeg-js/lib/decoder.js` and add following attribute in **image** object declared at line **1115** <br>
 `channels: decoder.components.length`
 
 ## Starting Development
