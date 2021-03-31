@@ -5,6 +5,7 @@ const fs = require('fs');
 const JPG = require('jpeg-js');
 const PNG = require('fast-png');
 const TIFF = require('tiff');
+const TGA = require('tga');
 import { TGALoader } from './TGALoader.js';
 import { EXRLoader } from './EXRLoader';
 
@@ -143,22 +144,57 @@ function TIFFTextureLoader(url, ext) {
 
 function TGATextureLoader(url, ext) {
   return new Promise((resolve, reject) => {
-    const loader = new TGALoader();
-    loader.load(
-      url,
-      (texture) => {
-        resolve({
-          texture,
-          channels: texture.channels,
-          bitDepth: texture.bitDepth,
-          ext,
-        });
-      },
-      undefined,
-      (err) => {
-        reject(err);
+    fs.readFile(url, (err, data) => {
+      if (err) reject(err);
+      else {
+        const rawData = new TGA(data);
+
+        if (rawData.readHeader().bitsPerPixel !== 32) {
+          const loader = new TGALoader();
+          loader.load(
+            url,
+            (texture) => {
+              resolve({
+                texture,
+                channels: texture.channels,
+                bitDepth: texture.bitDepth,
+                ext,
+              });
+            },
+            undefined,
+            (err) => {
+              reject(err);
+            }
+          );
+        } else {
+          const {
+            rawImgData,
+            width,
+            height,
+            channels,
+            bitDepth,
+          } = getDataAndBitDepthAndChannels(rawData);
+
+          const texture = createDataTexture(
+            rawImgData,
+            width,
+            height,
+            channels,
+            bitDepth,
+            ext
+          );
+
+          texture.flipY = true;
+
+          resolve({
+            texture,
+            channels,
+            bitDepth,
+            ext,
+          });
+        }
       }
-    );
+    });
   });
 }
 
@@ -241,21 +277,21 @@ function toHalfFloat(val) {
 }
 
 function getDataAndBitDepthAndChannels(rawImg) {
-  const rawImgData = rawImg.data;
+  var rawImgData = rawImg.data || rawImg.pixels;
   const width = rawImg.width || rawImg.imageWidth;
   const height = rawImg.height || rawImg.imageLength;
-  const channels = rawImg.channels || rawImg.components;
+  const channels = rawImg.channels || rawImg.components || rawImg.bytesPerPixel;
   var bitDepth = 0;
 
-  if (rawImg.data instanceof Uint8Array) {
+  if (rawImgData instanceof Uint8Array) {
     bitDepth = 8;
-  } else if (rawImg.data instanceof Uint16Array) {
+  } else if (rawImgData instanceof Uint16Array) {
     bitDepth = 16;
 
-    for (let i = 0; i < rawImg.data.length; i++) {
-      rawImg.data[i] = toHalfFloat(rawImg.data[i]);
+    for (let i = 0; i < rawImgData.length; i++) {
+      rawImgData[i] = toHalfFloat(rawImgData[i]);
     }
-  } else if (rawImg.data instanceof Float32Array) {
+  } else if (rawImgData instanceof Float32Array) {
     bitDepth = 32;
   }
 

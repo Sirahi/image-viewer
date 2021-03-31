@@ -113,7 +113,7 @@ export function getFragmentShader16Bit(checks) {
         uniform vec2 tiling;
 
         void main() {
-          vec4 tex = texture2D(map, vUv, 0.0) / 65536.0;
+          vec4 tex = texture2D(map, vUv, 0.0) / 65535.0;
           
           float red = 0.0;
           float green = 0.0;

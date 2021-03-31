@@ -16,6 +16,7 @@ function Hello(props) {
   const mount = useRef();
 
   const fileUri =
+    // 'E:\\Python-Tools\\TestFormats\\Cracked Nordic Beach Ground_vdymaajqx\\dasdsds_4K__vdymaajqx.tga';
     'E:\\Python-Tools\\TestFormats\\Huge Canyon Sandstone Mesa_vceicdsga\\test16RGBA_2K__vceicdsga.png';
 
   var isGrayScale = false;
